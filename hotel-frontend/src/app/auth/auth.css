@@ -383,6 +383,80 @@
   color: #1d4ed8;
 }
 
+/* Role Selection Styles */
+.role-selection {
+  margin-top: 2rem;
+}
+
+.role-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.role-button {
+  padding: 1rem 0.5rem;
+  border: 2px solid #fef3c7;
+  border-radius: 0.5rem;
+  background: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #78350f;
+}
+
+.role-button:hover {
+  border-color: #fcd34d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.role-button.client {
+  border-color: #3b82f6;
+  color: #1d4ed8;
+}
+
+.role-button.client:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.role-button.receptionist {
+  border-color: #10b981;
+  color: #047857;
+}
+
+.role-button.receptionist:hover {
+  border-color: #059669;
+  background: #ecfdf5;
+}
+
+.role-button.manager {
+  border-color: #f59e0b;
+  color: #d97706;
+}
+
+.role-button.manager:hover {
+  border-color: #d97706;
+  background: #fffbeb;
+}
+
+.role-button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.role-button span {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
 /* Responsive Design */
 @media (max-width: 640px) {
   .auth-card {
@@ -408,6 +482,10 @@
     top: 1rem;
     left: 1rem;
     padding: 0.5rem 0.75rem;
+  }
+
+  .role-buttons {
+    grid-template-columns: 1fr;
   }
 }
 

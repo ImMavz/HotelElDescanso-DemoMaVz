@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import backgroundImage from "../../assets/landing.webp" // Adjust the path as necessary
-import { Eye, EyeOff, ArrowLeft, Mail, Lock, User, Phone } from "lucide-react"
+import { Eye, EyeOff, ArrowLeft, Mail, Lock, User, Phone, Settings, Star } from "lucide-react"
 import "./auth.css"
 
 export default function AuthPage() {
@@ -238,6 +238,27 @@ export default function AuthPage() {
             <button className="social-button facebook">
               <span>Facebook</span>
             </button>
+          </div>
+        </div>
+
+        {/* Role Selection */}
+        <div className="role-selection">
+          <div className="divider">
+            <span>Acceso rápido para pruebas</span>
+          </div>
+          <div className="role-buttons">
+            <Link href="/dashboard" className="role-button client">
+              <User />
+              <span>Cliente</span>
+            </Link>
+            <Link href="/dashboard/receptionist" className="role-button receptionist">
+              <Settings />
+              <span>Recepcionista</span>
+            </Link>
+            <Link href="/dashboard/manager" className="role-button manager">
+              <Star />
+              <span>Gerente</span>
+            </Link>
           </div>
         </div>
       </div>
