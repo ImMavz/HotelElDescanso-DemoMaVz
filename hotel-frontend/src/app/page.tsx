@@ -2,6 +2,7 @@ import { Star, Wifi, Car, Coffee, Utensils, Waves, MapPin, Phone, Mail, Clock } 
 import Image from "next/image"
 import Link from "next/link"
 import landingpage from "../assets/landing.webp"
+import logo from "../assets/logo.webp"
 import "./hotel-landing.css"
 
 export default function HotelLanding() {
@@ -12,9 +13,6 @@ export default function HotelLanding() {
         <div className="container">
           <div className="header-content">
             <div className="logo-container">
-              <div className="logo-icon">
-                <span>H</span>
-              </div>
               <div className="logo-text">
                 <h1>Hotel El Descanso</h1>
                 <p>Tu refugio perfecto</p>
@@ -28,8 +26,12 @@ export default function HotelLanding() {
             </nav>
 
             <div className="auth-buttons">
-              <button className="btn btn-outline">Iniciar Sesión</button>
-              <button className="btn btn-primary">Registrarse</button>
+              <Link href="/auth" className="btn btn-outline">
+                Iniciar Sesión
+              </Link>
+              <Link href="/auth?mode=signup" className="btn btn-primary">
+                Registrarse
+              </Link>
             </div>
           </div>
         </div>
