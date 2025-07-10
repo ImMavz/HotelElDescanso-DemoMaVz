@@ -406,10 +406,7 @@ export default function Dashboard() {
       <aside className="sidebar">
         <div className="sidebar-header">
           <div className="logo-container">
-            <div className="logo-icon">
-              <Image src="/logo.png" alt="Hotel El Descanso Logo" width={32} height={32} className="logo-image" />
-            </div>
-            <div className="logo-text">
+            <div className="logo-text-dashboard">
               <h1>Hotel El Descanso</h1>
             </div>
           </div>

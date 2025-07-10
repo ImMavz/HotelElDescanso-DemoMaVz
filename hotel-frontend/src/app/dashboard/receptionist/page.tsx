@@ -361,7 +361,7 @@ export default function ReceptionistDashboard() {
       <aside className="sidebar receptionist">
         <div className="sidebar-header">
           <div className="logo-container">
-            <div className="logo-text">
+            <div className="logo-text-dashboard">
               <h1>Hotel El Descanso</h1>
               <p>Panel Recepcionista</p>
             </div>

@@ -2,7 +2,9 @@ import { Star, Wifi, Car, Coffee, Utensils, Waves, MapPin, Phone, Mail, Clock } 
 import Image from "next/image"
 import Link from "next/link"
 import landingpage from "../assets/landing.webp"
-import logo from "../assets/logo.webp"
+import presidencial from "../assets/suitePresidencial.jpg"
+import deluxe from "../assets/habitacionDeluxe.jpg"
+import standard from "../assets/habitacionEstandar.jpg"
 import "./hotel-landing.css"
 
 export default function HotelLanding() {
@@ -51,7 +53,7 @@ export default function HotelLanding() {
           <div className="badge hero-badge">⭐ Hotel 5 Estrellas</div>
           <h1 className="hero-title">Hotel El Descanso</h1>
           <p className="hero-description">
-            Donde cada momento se convierte en un recuerdo inolvidable. Experimenta el lujo y la comodidad en el corazón
+            Donde cada momento se convierte en un recuerdo inolvidable. Experimenta el lujo y la comodidad en las afueras
             de la ciudad.
           </p>
           <div className="hero-buttons">
@@ -108,20 +110,20 @@ export default function HotelLanding() {
             {[
               {
                 name: "Suite Presidencial",
-                price: "$299",
-                image: "/placeholder.svg?height=300&width=400",
+                price: "$120",
+                image: presidencial,
                 features: ["Vista panorámica", "Jacuzzi privado", "Sala de estar"],
               },
               {
                 name: "Habitación Deluxe",
-                price: "$199",
-                image: "/placeholder.svg?height=300&width=400",
+                price: "$60",
+                image: deluxe,
                 features: ["Cama King Size", "Balcón privado", "Minibar"],
               },
               {
                 name: "Habitación Estándar",
-                price: "$129",
-                image: "/placeholder.svg?height=300&width=400",
+                price: "$20",
+                image: standard,
                 features: ["Cama Queen", "WiFi gratuito", "TV Smart"],
               },
             ].map((room, index) => (
@@ -213,9 +215,6 @@ export default function HotelLanding() {
           <div className="footer-content">
             <div className="footer-section">
               <div className="footer-logo">
-                <div className="footer-logo-icon">
-                  <span>H</span>
-                </div>
                 <span>Hotel El Descanso</span>
               </div>
               <p className="footer-description">

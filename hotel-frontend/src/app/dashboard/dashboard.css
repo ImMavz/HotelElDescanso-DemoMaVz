@@ -50,11 +50,13 @@
   border-radius: 0.25rem;
 }
 
-.sidebar-header .logo-text h1 {
+.sidebar-header .logo-text-dashboard h1 {
   font-size: 1.125rem;
   font-weight: bold;
   margin: 0;
+  color: #dcfce7;
 }
+
 
 .sidebar-nav {
   flex: 1;

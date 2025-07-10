@@ -33,6 +33,7 @@
   position: sticky;
   top: 0;
   z-index: 50;
+  opacity: 0.9;
 }
 
 .header-content {
@@ -155,9 +156,10 @@
 
 .hero-badge {
   margin-bottom: 1rem;
-  background: rgba(245, 158, 11, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   color: #fef3c7;
   border: 1px solid rgba(251, 191, 36, 0.3);
+  font-size: 20px;
 }
 
 .hero-title {

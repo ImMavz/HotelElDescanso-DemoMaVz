@@ -25,12 +25,13 @@ type SectionType = "profile" | "analytics"
 
 export default function ManagerDashboard() {
   const [activeSection, setActiveSection] = useState<SectionType>("profile")
+  const [chartType, setChartType] = useState<"line" | "bar">("line")
 
   // Datos simulados del gerente
   const managerData = {
-    name: "Roberto Fernández",
+    name: "Joseph Herrera",
     role: "Gerente General",
-    email: "roberto.fernandez@hoteldescanso.com",
+    email: "joseph.herrera@hoteldescanso.com",
     phone: "+1 (555) 100-2000",
     employeeId: "MGR-001",
     department: "Administración General",
@@ -214,23 +215,133 @@ export default function ManagerDashboard() {
         <div className="chart-card revenue-chart">
           <div className="chart-header">
             <h3>Ingresos Mensuales</h3>
-            <div className="chart-period">Últimos 6 meses</div>
+            <div className="chart-controls">
+              <button
+                className={`chart-toggle ${chartType === "line" ? "active" : ""}`}
+                onClick={() => setChartType("line")}
+              >
+                Líneas
+              </button>
+              <button
+                className={`chart-toggle ${chartType === "bar" ? "active" : ""}`}
+                onClick={() => setChartType("bar")}
+              >
+                Barras
+              </button>
+            </div>
           </div>
           <div className="chart-container">
-            <div className="bar-chart">
-              {analyticsData.monthlyRevenue.map((data, index) => (
-                <div key={index} className="bar-item">
-                  <div
-                    className="bar"
-                    style={{
-                      height: `${(data.revenue / 125000) * 100}%`,
-                    }}
-                  ></div>
-                  <span className="bar-label">{data.month}</span>
-                  <span className="bar-value">${(data.revenue / 1000).toFixed(0)}K</span>
+            {chartType === "line" ? (
+              <div className="line-chart">
+                <div className="chart-grid">
+                  {/* Grid lines */}
+                  <div className="grid-lines">
+                    {[0, 25, 50, 75, 100].map((line, index) => (
+                      <div key={index} className="grid-line" style={{ bottom: `${line}%` }}>
+                        <span className="grid-label">${(line * 1250).toLocaleString()}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Line path */}
+                  <svg className="line-svg" viewBox="0 0 300 200">
+                    <defs>
+                      <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#f59e0b" />
+                        <stop offset="100%" stopColor="#d97706" />
+                      </linearGradient>
+                      <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="rgba(245, 158, 11, 0.3)" />
+                        <stop offset="100%" stopColor="rgba(245, 158, 11, 0.05)" />
+                      </linearGradient>
+                    </defs>
+
+                    {/* Area under the line */}
+                    <path
+                      d={`M 25 ${200 - (analyticsData.monthlyRevenue[0].revenue / 125000) * 180} 
+                         L 75 ${200 - (analyticsData.monthlyRevenue[1].revenue / 125000) * 180}
+                         L 125 ${200 - (analyticsData.monthlyRevenue[2].revenue / 125000) * 180}
+                         L 175 ${200 - (analyticsData.monthlyRevenue[3].revenue / 125000) * 180}
+                         L 225 ${200 - (analyticsData.monthlyRevenue[4].revenue / 125000) * 180}
+                         L 275 ${200 - (analyticsData.monthlyRevenue[5].revenue / 125000) * 180}
+                         L 275 200 L 25 200 Z`}
+                      fill="url(#areaGradient)"
+                      className="area-path"
+                    />
+
+                    {/* Main line */}
+                    <path
+                      d={`M 25 ${200 - (analyticsData.monthlyRevenue[0].revenue / 125000) * 180} 
+                         L 75 ${200 - (analyticsData.monthlyRevenue[1].revenue / 125000) * 180}
+                         L 125 ${200 - (analyticsData.monthlyRevenue[2].revenue / 125000) * 180}
+                         L 175 ${200 - (analyticsData.monthlyRevenue[3].revenue / 125000) * 180}
+                         L 225 ${200 - (analyticsData.monthlyRevenue[4].revenue / 125000) * 180}
+                         L 275 ${200 - (analyticsData.monthlyRevenue[5].revenue / 125000) * 180}`}
+                      stroke="url(#lineGradient)"
+                      strokeWidth="3"
+                      fill="none"
+                      className="line-path"
+                    />
+
+                    {/* Data points */}
+                    {analyticsData.monthlyRevenue.map((data, index) => (
+                      <g key={index}>
+                        <circle
+                          cx={25 + index * 50}
+                          cy={200 - (data.revenue / 125000) * 180}
+                          r="6"
+                          fill="#f59e0b"
+                          stroke="white"
+                          strokeWidth="3"
+                          className="data-point"
+                          data-value={data.revenue}
+                          data-month={data.month}
+                        />
+                        <circle
+                          cx={25 + index * 50}
+                          cy={200 - (data.revenue / 125000) * 180}
+                          r="12"
+                          fill="transparent"
+                          className="data-point-hover"
+                          data-value={data.revenue}
+                          data-month={data.month}
+                        />
+                      </g>
+                    ))}
+                  </svg>
+
+                  {/* X-axis labels */}
+                  <div className="x-axis">
+                    {analyticsData.monthlyRevenue.map((data, index) => (
+                      <span key={index} className="x-label">
+                        {data.month}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ) : (
+              <div className="bar-chart-improved">
+                {analyticsData.monthlyRevenue.map((data, index) => (
+                  <div key={index} className="bar-item-improved">
+                    <div className="bar-container">
+                      <div
+                        className="bar-improved"
+                        style={{
+                          height: `${(data.revenue / 125000) * 100}%`,
+                          animationDelay: `${index * 0.1}s`,
+                        }}
+                        data-value={data.revenue}
+                      >
+                        <div className="bar-glow"></div>
+                      </div>
+                    </div>
+                    <span className="bar-label-improved">{data.month}</span>
+                    <span className="bar-value-improved">${(data.revenue / 1000).toFixed(0)}K</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
@@ -342,7 +453,7 @@ export default function ManagerDashboard() {
       <aside className="sidebar manager">
         <div className="sidebar-header">
           <div className="logo-container">
-            <div className="logo-text">
+            <div className="logo-text-dashboard">
               <h1>Hotel El Descanso</h1>
               <p>Panel Gerencial</p>
             </div>
